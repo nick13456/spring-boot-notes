@@ -98,10 +98,10 @@ spring:
     password: luohepeng
 #数组↓    
 people:
-    -nick
-    -joe
-    -hash
-    -bolt
+    - nick
+    - joe
+    - hash
+    - bolt
     
 ````
 
