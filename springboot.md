@@ -29,6 +29,7 @@
     <version>2.1.6.RELEASE</version>
     <relativePath>../../spring-boot-dependencies</relativePath>
   </parent>
+
 ```
 
 在spring-boot-dependencies中配置了很多需要的jar包的版本，因此再导入相同的jar包是不需要再配置版本了。如果是其中不包括的jar包，则需要配置版本。
