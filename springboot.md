@@ -1,6 +1,9 @@
-# 简化部署
+# 一、入门
+
+## 简化部署
 
 ```xml
+
 <!--用于把项目打包成jar包的插件-->
 <build>
         <plugins>
@@ -67,4 +70,48 @@ public class HelloController {
 ![](C:\Users\nick\Desktop\spring-boot-notes\images\Snipaste_2019-07-16_18-35-49.png)
 
 <u>templates:</u> spring boot默认是嵌入式tomcat，不支持jsp页面，因此需要使用模板引擎(freemaker、thymeleaf等).
+
+# 二、配置
+
+支持的文件配置: 1,yml 	2,yaml 	3,properties
+
+````xml
+<resource>
+        <filtering>true</filtering>
+        <directory>${basedir}/src/main/resources</directory>
+        <includes>
+            <!--支持一下三种两种文件配置，最下面的会覆盖上面的-->
+          <include>**/application*.yml</include>
+          <include>**/application*.yaml</include>
+          <include>**/application*.properties</include>
+        </includes>
+</resource>
+````
+
+````yml
+#对象↓
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql:///test?serverTimezone=UTC
+    username: root
+    password: luohepeng
+#数组↓    
+people:
+    -nick
+    -joe
+    -hash
+    -bolt
+    
+````
+
+
+
+
+
+
+
+
+
+
 
