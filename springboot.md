@@ -492,3 +492,6 @@ spring:
 
 ![1563346364782](C:\Users\nick\Desktop\spring-boot-notes\images\1563346364782.png)
 
+## 常用配置:
+
+参考spring官方的：[Common application properties](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/common-application-properties.html)
