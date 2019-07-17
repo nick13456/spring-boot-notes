@@ -468,3 +468,7 @@ spring:
 ![Snipaste_2019-07-17_14-09-05](C:\Users\nick\Desktop\spring-boot-notes\images\Snipaste_2019-07-17_14-09-05.png)
 
 --spring.profiles.active:prod
+
+或者:
+
+![Snipaste_2019-07-17_14-16-11](C:\Users\nick\Desktop\spring-boot-notes\images\Snipaste_2019-07-17_14-16-11.png)
