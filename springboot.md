@@ -73,6 +73,8 @@ public class HelloController {
 
 # 二、配置
 
+## yaml格式以及注入属性
+
 支持的文件配置: 1,yml 	2,yaml 	3,properties
 
 ````xml
@@ -114,6 +116,93 @@ people:
     - hash
     - bolt
     
+````
+
+## @ConfigurationProperties
+
+利用yaml的配置和@ConfigurationProperties(prefix = "nick")给对象注入属性:
+
+````java
+package com.autospring.atspring.domain;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+import java.util.Arrays;
+import java.util.Map;
+
+@Component
+@ConfigurationProperties(prefix = "nick")
+public class Nick {
+    private String lastName;
+    private Integer age;
+    private Dog xiaobai;
+    private Map<Integer,String> map;
+    private Integer[] nums;
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Dog getXiaobai() {
+        return xiaobai;
+    }
+
+    public void setXiaobai(Dog xiaobai) {
+        this.xiaobai = xiaobai;
+    }
+
+    public Map<Integer, String> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<Integer, String> map) {
+        this.map = map;
+    }
+
+    public Integer[] getNums() {
+        return nums;
+    }
+
+    public void setNums(Integer[] nums) {
+        this.nums = nums;
+    }
+
+    @Override
+    public String toString() {
+        return "Nick{" +
+                "lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", xiaobai=" + xiaobai +
+                ", map=" + map +
+                ", nums=" + Arrays.toString(nums) +
+                '}';
+    }
+}
+
+````
+
+````yaml
+nick:
+  last-name: luo
+  age: 18
+  nums: [3,4,6,8,0]
+  map:
+    1: book
+    2: phone
+  xiaobai:
+    name: xiaobai
+    age : 3
 ````
 
 
