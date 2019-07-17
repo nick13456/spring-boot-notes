@@ -426,6 +426,8 @@ nick.nums=1,4,6,8,9
 
 指定springboot使用的配置文件：application-nick.yml或application-nick.yml
 
+springboot的配置文件明明规则: application-\*\*.yml 或application-\*\*.properties
+
 properties配置:
 
 ```properties
@@ -440,7 +442,7 @@ spring:
     active: nick
 ```
 
-### yml文档快配置:
+### yml文档块配置:
 
 ```yml
 spring:
@@ -472,3 +474,21 @@ spring:
 或者:
 
 ![Snipaste_2019-07-17_14-16-11](C:\Users\nick\Desktop\spring-boot-notes\images\Snipaste_2019-07-17_14-16-11.png)
+
+## 配置文件的位置
+
+```xml
+-file:/config/
+-file:../
+-classpath:/config/
+-classpath:/
+```
+
+都可以存放配置文件，优先级从高到低。相同的配置，高的优先级会覆盖低的优先级。不同的配置会形成互补配置
+
+```
+--spring.config.location=G:/appcalication.properties。改名了用在服务器终端在启动部署服务的时候。↓
+```
+
+![1563346364782](C:\Users\nick\Desktop\spring-boot-notes\images\1563346364782.png)
+
