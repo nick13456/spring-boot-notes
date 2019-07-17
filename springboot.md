@@ -192,6 +192,8 @@ public class Nick {
 
 ````
 
+### yaml配置:
+
 ````yaml
 nick:
   last-name: luo
@@ -205,13 +207,73 @@ nick:
     age : 3
 ````
 
+### properties配置:
 
+```properties
+nick.last-name=luo
+nick.age=17
+nick.xiaobai.name=xiaobai
+nick.xiaobai.age=5
+nick.map.1=java
+nick.map.2=js
+nick.nums=1,4,6,8,9
+```
 
+## @ConfigurationProperties @Value区别
 
+|                      | @ConfigurationProperties | @Value     |
+| -------------------- | ------------------------ | ---------- |
+| 功能                 | 批量注入配置文件中的属性 | 一个个指定 |
+| 松散绑定（松散语法） | 支持                     | 不支持     |
+| SpEL                 | 不支持                   | 支持       |
+| JSR303数据校验       | 支持                     | 不支持     |
+| 复杂类型封装(Map等)  | 支持                     | 不支持     |
 
+所谓松散语法也就是属性命名规则:（Relaxed binding）以下写法在松散绑定语法中都一样
 
+```
+- person.firstName:使用标准方式
+- person.first-name:大写用-         
+- person.first_name:大写用_
+- PERSON_FIRST_NAME: 系统属性推荐使用这种写法
+```
 
+### JSR303校验:
 
+```java
+import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.Email;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.validation.annotation.Validated;
 
+@ConfigurationProperties
+@Validated		// 开启属性注入校验
+public class Properties {
+
+    @NotNull		// 校验必须是非空
+    private String userName;
+    
+    @Email			// 校验必须是email格式 ****@**.**
+    private String email;
+    
+}
+```
+
+### SpEl
+
+@ConfigurationProperties不支持EL表达式
+
+application.properties文件中有字段 person.userAge=12 
+
+```
+userAge = 12   //可以
+userAge = #{2*6}  //EL表达式不支持
+```
+
+### @Value支持EL表达式
+
+```java
+`@Value(userAge=#{2*6}) ``//支持EL表达式`
+```
 
