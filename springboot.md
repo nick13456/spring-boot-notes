@@ -492,7 +492,7 @@ spring:
 
 ![1563346364782](C:\Users\nick\Desktop\spring-boot-notes\images\1563346364782.png)
 
-## 常用配置:
+## 常用springboot属性配置:
 
 参考spring官方的：[Common application properties](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/common-application-properties.html)
 
@@ -501,3 +501,6 @@ debug: true
 ```
 
 开启debug，来查看哪些类已经自动配置好了(positive matches)，哪些没有配置好(nagetive matches)。
+
+## 配置日志logback+slf4j
+
