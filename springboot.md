@@ -293,17 +293,7 @@ nick.map.2=js
 nick.nums=1,4,6,8,9
 ```
 
-```java
-@SpringBootApplication
-@PropertySource("classpath:nick.properties")   //导入classpath下的nick.properties文件，再将其注入给nick类
-public class AutospringApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(AutospringApplication.class, args);
-    }
-}
-```
-
-Nick类:
+Nick类:	在需要注入的类上添加@PropertySource("classpath:***")
 
 ```java
 package com.autospring.atspring.domain;
@@ -314,6 +304,7 @@ import java.util.Arrays;
 import java.util.Map;
 
 @Component
+@PropertySource("classpath:nick.properties")	// 添加在需要注入的类上
 @ConfigurationProperties(prefix = "nick")	// 注入nick.properties中的属性
 public class Nick {
     private String lastName;
@@ -416,5 +407,17 @@ public class AppConfig {
 
 }
 
+```
+
+## 配置文件的占位符
+
+```properties
+nick.last-name=luo
+nick.age=${random.int(100)}
+nick.xiaobai.name=${nick.last-name}_xiaobai
+nick.xiaobai.age=${xiaobai.birth:5}			#给xiaobai.birth定一个默认值
+nick.map.1=java
+nick.map.2=js
+nick.nums=1,4,6,8,9
 ```
 
