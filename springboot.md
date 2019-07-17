@@ -415,9 +415,28 @@ public class AppConfig {
 nick.last-name=luo
 nick.age=${random.int(100)}
 nick.xiaobai.name=${nick.last-name}_xiaobai
-nick.xiaobai.age=${xiaobai.birth:5}			#给xiaobai.birth定一个默认值
+#给未定义的 xiaobai.birth 定一个默认值↓
+nick.xiaobai.age=${xiaobai.birth:5}			
 nick.map.1=java
 nick.map.2=js
 nick.nums=1,4,6,8,9
+```
+
+## profile
+
+指定springboot使用的配置文件：application-nick.yml或application-nick.yml
+
+properties配置:
+
+```properties
+spring.profiles.active=nick
+```
+
+或yml配置:
+
+```yaml
+spring:
+  profiles:
+    active: nick
 ```
 
