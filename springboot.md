@@ -238,7 +238,7 @@ nick.nums=1,4,6,8,9
 - PERSON_FIRST_NAME: 系统属性推荐使用这种写法
 ```
 
-### JSR303校验:
+#### JSR303校验:
 
 ```java
 import javax.validation.constraints.NotNull;
@@ -260,7 +260,7 @@ public class Properties {
 }
 ```
 
-### SpEl
+#### SpEl
 
 @ConfigurationProperties不支持EL表达式
 
@@ -271,9 +271,150 @@ userAge = 12   //可以
 userAge = #{2*6}  //EL表达式不支持
 ```
 
-### @Value支持EL表达式
+#### @Value支持EL表达式
 
 ```java
 `@Value(userAge=#{2*6}) ``//支持EL表达式`
+```
+
+## @PropertySource和@ImportSource
+
+#### @PropertySource
+
+nick.properties：
+
+```properties
+nick.last-name=luo
+nick.age=17
+nick.xiaobai.name=xiaobai
+nick.xiaobai.age=5
+nick.map.1=java
+nick.map.2=js
+nick.nums=1,4,6,8,9
+```
+
+```java
+@SpringBootApplication
+@PropertySource("classpath:nick.properties")   //导入classpath下的nick.properties文件，再将其注入给nick类
+public class AutospringApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(AutospringApplication.class, args);
+    }
+}
+```
+
+Nick类:
+
+```java
+package com.autospring.atspring.domain;
+
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+import java.util.Arrays;
+import java.util.Map;
+
+@Component
+@ConfigurationProperties(prefix = "nick")	// 注入nick.properties中的属性
+public class Nick {
+    private String lastName;
+    private Integer age;
+    private Dog xiaobai;
+    private Map<Integer,String> map;
+    private Integer[] nums;
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
+    }
+
+    public Dog getXiaobai() {
+        return xiaobai;
+    }
+
+    public void setXiaobai(Dog xiaobai) {
+        this.xiaobai = xiaobai;
+    }
+
+    public Map<Integer, String> getMap() {
+        return map;
+    }
+
+    public void setMap(Map<Integer, String> map) {
+        this.map = map;
+    }
+
+    public Integer[] getNums() {
+        return nums;
+    }
+
+    public void setNums(Integer[] nums) {
+        this.nums = nums;
+    }
+
+    @Override
+    public String toString() {
+        return "Nick{" +
+                "lastName='" + lastName + '\'' +
+                ", age=" + age +
+                ", xiaobai=" + xiaobai +
+                ", map=" + map +
+                ", nums=" + Arrays.toString(nums) +
+                '}';
+    }
+}
+
+```
+
+#### @ImportSource
+
+```java
+package com.autospring.atspring;
+
+import com.autospring.atspring.config.AppConfig;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.*;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import javax.sql.DataSource;
+import java.lang.annotation.Documented;
+import java.lang.annotation.Inherited;
+
+@SpringBootApplication
+@PropertySource("classpath:nick.properties")
+//@ImportResource(locations = "classpath:bean.xml")		// 用来导入spring的xml配置,现在不用了
+public class AutospringApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(AutospringApplication.class, args);
+    }
+
+}
+
+```
+
+#### 直接使用@Configuration来直接写配置类:
+
+```java
+package com.autospring.atspring.config;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration				// 直接表示该类是配置类，不需要在springboot配置类中用@ImportResource
+public class AppConfig {
+
+}
+
 ```
 
