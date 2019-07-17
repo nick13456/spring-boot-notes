@@ -495,3 +495,9 @@ spring:
 ## 常用配置:
 
 参考spring官方的：[Common application properties](https://docs.spring.io/spring-boot/docs/2.1.6.RELEASE/reference/html/common-application-properties.html)
+
+```yaml
+debug: true
+```
+
+开启debug，来查看哪些类已经自动配置好了(positive matches)，哪些没有配置好(nagetive matches)。
