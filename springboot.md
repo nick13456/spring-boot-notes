@@ -88,6 +88,17 @@ public class HelloController {
 </resource>
 ````
 
+增强配置yml和properties提示属性的处理器：
+
+````xml
+ <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-configuration-processor</artifactId>
+</dependency>
+````
+
+yml: 格式
+
 ````yml
 #对象↓
 spring:
