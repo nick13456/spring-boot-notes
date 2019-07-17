@@ -440,3 +440,31 @@ spring:
     active: nick
 ```
 
+### yml文档快配置:
+
+```yml
+spring:
+  profiles:
+    active: dev		#选择下面哪一个文档快
+---
+server:
+  port: 8083
+spring:
+  profiles: dev
+---
+server:
+  port: 8084
+spring:
+  profiles: prod
+---
+server:
+  port: 8085
+spring:
+  profiles: test
+```
+
+### 命令行配置:
+
+![Snipaste_2019-07-17_14-09-05](C:\Users\nick\Desktop\spring-boot-notes\images\Snipaste_2019-07-17_14-09-05.png)
+
+--spring.profiles.active:prod
