@@ -504,3 +504,18 @@ debug: true
 
 ## 配置日志logback+slf4j
 
+slf4j:
+
+```java
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class HelloWorld {
+  public static void main(String[] args) {
+    Logger logger = LoggerFactory.getLogger(HelloWorld.class);
+    logger.info("Hello World");
+  }
+}
+```
+
+日志的配置文件还是写实现的框架的配置
