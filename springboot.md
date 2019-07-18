@@ -541,3 +541,37 @@ spring-boot底层记录日志的关系：
 
 <u>如果spring-boot中引入了其它框架，那么我们需要把这些框架中的日志依赖移除掉（唯一需要做的）。</u>
 
+### 日志级别:
+
+```java
+Logger logger = LoggerFactory.getLogger(getClass());       //获取本类的类
+	/**
+     * 日志的级别: trace<debug<info<war<error
+     * 可以设置日志的级别。设置之后只会显示该级别及以上的级别日志
+     *info及以下属于root级别
+     */
+    @Test
+    public void testLog(){
+        logger.trace("trace----");
+        logger.debug("debug----");
+        logger.info("info----");
+        logger.warn("warn----");
+        logger.error("error----");
+    }
+```
+
+设置日志级别:
+
+```properties
+logging.level.com.autospring.atspring=trace
+```
+
+日志输出路径:
+
+```properties
+#↓直接输出在target目录下的log.txt
+logging.file:logs.txt
+#↓直接输出在G盘目录下的log.txt
+loggin.file=G:/log.txt
+```
+
