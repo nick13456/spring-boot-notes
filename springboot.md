@@ -502,7 +502,7 @@ debug: true
 
 开启debug，来查看哪些类已经自动配置好了(positive matches)，哪些没有配置好(nagetive matches)。
 
-## 配置日志logback+slf4j
+# 三、配置日志logback+slf4j
 
 slf4j:
 
@@ -519,3 +519,25 @@ public class HelloWorld {
 ```
 
 日志的配置文件还是写实现的框架的配置
+
+springboot依靠spring-boot-starter-logging来记录日志:
+
+```xml
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
+      <version>2.1.6.RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
+```
+
+spring-boot底层记录日志的关系：
+
+也是使用slf4j和logback的日志记录关系,把其它的日志都替换成了slf4j
+
+![](C:\Users\nick\Desktop\spring-boot-notes\images\Snipaste_2019-07-18_14-30-17.png)
+
+## 配置日志: 
+
+<u>如果spring-boot中引入了其它框架，那么我们需要把这些框架中的日志依赖移除掉（唯一需要做的）。</u>
+
