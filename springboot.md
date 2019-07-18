@@ -573,7 +573,8 @@ logging.level.com.autospring.atspring=trace
 logging.file:logs.txt
 #↓直接输出在G盘目录下的log.txt
 logging.file=G:/log.txt
-#↓直接指定日志输出的路径，默认文件是spring.log
+#↓直接指定日志输出的路径为target，默认文件是spring.log。一般都用这种方式
 logging.path=target
+logging.pattern.console=
 ```
 
